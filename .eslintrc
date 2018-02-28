@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "globals": {
+    "fetch": true,
+    "FormData": true
+  }
+}
