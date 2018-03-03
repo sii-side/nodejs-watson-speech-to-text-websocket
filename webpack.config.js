@@ -19,10 +19,7 @@ module.exports = {
       }
     ]
   },
-  /*
   plugins: [
     new webpack.optimize.UglifyJsPlugin()
-  ],
-  */
-  devtool: 'inline-source-map'
+  ]
 }

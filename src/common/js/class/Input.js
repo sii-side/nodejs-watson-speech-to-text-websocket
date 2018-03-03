@@ -1,4 +1,4 @@
-import Message from './Message'
+import Transcript from './Transcript'
 
 export default class Input {
   constructor (selector, translator) {
@@ -15,11 +15,27 @@ export default class Input {
   }
 
   onChange (e) {
-    this.upload()
-    this.translator.message(new Message('information', 'Uploading File...'))
+    this.translator.message({
+      type: 'result',
+      body: 'Sending File...'
+    })
+    const formData = new FormData()
+    formData.append('sound', e.target.files[0])
+    this.send(formData)
   }
 
-  upload () {
-    this.translator.upload(this.element)
+  send (formData) {
+    fetch('http://localhost:3000/send', {
+      method: 'POST',
+      mode: 'cors',
+      body: formData
+    }).then(response => {
+      return response.json()
+    }).then(result => {
+      this.translator.message({
+        type: 'result',
+        body: new Transcript(result).output()
+      })
+    })
   }
 }
