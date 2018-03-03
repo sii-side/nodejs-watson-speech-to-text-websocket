@@ -1,15 +1,15 @@
 {
-  "name": "nodejs-watson-speech-to-text",
+  "name": "nodejs-watson-speech-to-text-websocket",
   "version": "0.0.1",
   "description": "Using IBM Watson Speech to Text API",
   "author": "sii",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sii-side/nodejs-watson-speech-to-text.git"
+    "url": "https://github.com/sii-side/nodejs-watson-speech-to-text-websocket.git"
   },
   "scripts": {
-    "start": "node server/index",
+    "start": "node --experimental-modules server/index.mjs",
     "test": "cross-env NODE_ENV=test nyc mocha --require @babel/register",
     "report": "nyc report",
     "webpack": "webpack",
@@ -70,6 +70,9 @@
     "nyc": "^11.5.0",
     "popper.js": "^1.12.9",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^2.0.4",
+    "socket.io-file": "^2.0.2",
+    "socket.io-file-client": "^2.0.2",
     "tether": "^1.4.3",
     "watson-developer-cloud": "^3.0.7",
     "webpack": "^3.10.0",

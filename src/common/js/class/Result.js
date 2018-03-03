@@ -4,7 +4,7 @@ export default class Result {
     this.translator = translator
   }
 
-  view (data) {
-    this.element.innerHTML = JSON.stringify(data)
+  output (data) {
+    this.element.innerHTML += data
   }
 }
