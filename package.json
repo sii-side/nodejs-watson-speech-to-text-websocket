@@ -9,8 +9,9 @@
     "url": "https://github.com/sii-side/nodejs-watson-speech-to-text-websocket.git"
   },
   "scripts": {
-    "start": "node --experimental-modules server/index.mjs",
+    "start": "run-p server gulp",
     "test": "cross-env NODE_ENV=test nyc mocha --require @babel/register",
+    "server": "node --experimental-modules server/index.mjs",
     "report": "nyc report",
     "webpack": "webpack",
     "gulp": "gulp"
@@ -67,6 +68,7 @@
     "mocha": "^4.1.0",
     "multer": "^1.3.0",
     "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
     "nyc": "^11.5.0",
     "popper.js": "^1.12.9",
     "slick-carousel": "^1.8.1",

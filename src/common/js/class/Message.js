@@ -4,11 +4,7 @@ export default class Message {
     this.body = body
   }
 
-  output (withDate = true) {
-    if (withDate) {
-      return `[${new Date().toLocaleString()}] ${this.body}`
-    } else {
-      return this.body
-    }
+  output (withTime = true) {
+    return withTime ? `[${new Date().toLocaleString()}] ${this.body}` : this.body
   }
 }

@@ -27,23 +27,30 @@ export default class SpeechToText {
   }
 
   attach () {
-    this.stream.on('data', result => {
-      this.server.console.log('Result', JSON.stringify(result))
-      if (result.results[0].final) {
-        this.server.message({
-          type: 'data',
-          body: new RecognizeResult(result).output()
-        })
-      }
-    })
+    this.stream.on('data', this.onData.bind(this))
+    this.stream.on('close', this.onClose.bind(this))
+  }
 
-    this.stream.on('close', result => {
-      this.server.console.log('Close', JSON.stringify(result))
+  onData (result) {
+    const recognizeResult = new RecognizeResult(result)
+    if (recognizeResult.final()) {
+      this.server.message({
+        type: 'data',
+        body: recognizeResult.output()
+      })
       this.server.message({
         type: 'information',
-        body: 'Recognization completed.'
+        body: `Data received: index->${recognizeResult.index()} confidence->${recognizeResult.confidence()}`
       })
-      this.stream = null
+    }
+  }
+
+  onClose (result) {
+    this.server.console.log('Close', JSON.stringify(result))
+    this.server.message({
+      type: 'information',
+      body: 'Recognization completed.'
     })
+    this.stream = null
   }
 }
